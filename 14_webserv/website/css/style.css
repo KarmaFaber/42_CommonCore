@@ -1,0 +1,611 @@
+/* ==========================================================================
+	COLOR VARIABLES (CMY palette: Cyan, Magenta, Dark tones)
+	========================================================================== */
+:root {
+	--bg-dark: #0f0f1d; 
+	--bg-medium: #1c1c30; 
+	--bg-footer: #0a0a14; 
+
+	/* CMY accent colors */
+	--neon-start: #00FFFF;
+	--neon-mid: #8681ec;
+	--neon-end: #FF00FF;
+	--text-light: #e0e0e0;
+	--text-subtle: #a0a0a0;
+}
+
+/* ==========================================================================
+	GLOBAL & BASE STYLES
+	========================================================================== */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	color: var(--text-light);
+}
+
+body {
+	background-color: var(--bg-dark);
+	min-height: 100vh;
+	padding: 0; 
+	padding-bottom: 40px; /* Space so content breathes before the footer */
+}
+
+/* ==========================================================================
+	HEADER & NAVIGATION
+	========================================================================== */
+.main-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 25px 30px; 
+	position: relative;
+	background-color: var(--bg-dark);
+}
+
+/* Neon divider line */
+.main-header::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: linear-gradient(90deg, var(--neon-start), var(--neon-end));
+	box-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+}
+
+/* Logo / corner links */
+.logo {
+	font-size: 18px;
+	font-weight: 700;
+	background: linear-gradient(90deg, var(--neon-start), var(--neon-end));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+	text-decoration: none;
+	cursor: pointer;
+	transition: text-shadow 0.3s ease-in-out;
+}
+
+.logo:hover {
+	text-shadow: 0 0 5px var(--neon-start), 0 0 15px var(--neon-end); 
+}
+
+/* Navigation menu */
+nav ul {
+	list-style: none;
+	display: flex;
+	gap: 25px;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 15px;
+	padding: 5px 0;
+	transition: color 0.3s;
+	color: var(--text-subtle);
+	position: relative;
+}
+
+nav a:hover {
+	color: var(--text-light);
+}
+
+/* Animated underline for the menu */
+nav a::after {
+	content: '';
+	position: absolute;
+	bottom: -5px;
+	left: 50%;
+	transform: translateX(-50%) scaleX(0);
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, var(--neon-start), var(--neon-end));
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+	border-radius: 1px;
+}
+
+nav a:hover::after {
+	transform: translateX(-50%) scaleX(1);
+	box-shadow: 0 0 5px var(--neon-start);
+}
+
+/* CGI language selector */
+#cgi-selector {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	min-width: 120px;
+	padding: 8px 36px 8px 12px;
+	border-radius: 8px;
+	border: 1px solid rgba(0, 255, 255, 0.45);
+	background-color: rgba(12, 12, 28, 0.95);
+	background-image:
+		linear-gradient(45deg, transparent 50%, var(--neon-start) 50%),
+		linear-gradient(135deg, var(--neon-start) 50%, transparent 50%);
+	background-position:
+		calc(100% - 17px) calc(50% - 2px),
+		calc(100% - 11px) calc(50% - 2px);
+	background-size: 6px 6px, 6px 6px;
+	background-repeat: no-repeat;
+	color: var(--text-light);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	cursor: pointer;
+	box-shadow:
+		inset 0 0 0 1px rgba(255, 0, 255, 0.2),
+		0 0 8px rgba(0, 255, 255, 0.18);
+	transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+#cgi-selector:hover {
+	border-color: var(--neon-end);
+	box-shadow:
+		inset 0 0 0 1px rgba(255, 0, 255, 0.35),
+		0 0 10px rgba(255, 0, 255, 0.28);
+	transform: translateY(-1px);
+}
+
+#cgi-selector:focus {
+	outline: none;
+	border-color: var(--neon-start);
+	box-shadow:
+		0 0 0 2px rgba(0, 255, 255, 0.22),
+		0 0 14px rgba(0, 255, 255, 0.35);
+}
+
+#cgi-selector option {
+	background-color: var(--bg-medium);
+	color: var(--text-light);
+}
+
+/* ==========================================================================
+	INTRODUCTION SECTIONS & TITLES
+	========================================================================== */
+.intro-section {
+	padding: 60px 30px 40px; 
+	text-align: center;
+}
+
+.main-title, .secondary-title {
+	font-size: 4rem;
+	font-weight: 700;
+	letter-spacing: 2px;
+	position: relative;
+	display: inline-block;
+	transition: text-shadow 0.5s ease-in-out; 
+
+	/* Title centering */
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+
+.secondary-title {
+	font-size: 3rem;
+	margin-bottom: 40px;
+}
+
+.main-title:hover, .secondary-title:hover {
+	text-shadow: 0 0 3px var(--neon-start), 0 0 6px var(--neon-end);
+}
+
+.gradient-text {
+	background: linear-gradient(90deg, var(--neon-start) 0%, var(--neon-end) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+
+	/* Additional centering for this class */
+	display: inline;
+}
+
+/* Decorative underline for titles */
+.main-title::after, .secondary-title::after {
+	content: '';
+	display: block;
+	width: 60%;
+	height: 3px;
+	background: linear-gradient(90deg, var(--neon-start), var(--neon-end));
+	margin: 10px auto 0;
+	box-shadow: 0 0 8px var(--neon-start);
+	border-radius: 2px;
+}
+
+.secondary-title::after {
+	width: 30%; 
+}
+
+/* Section descriptors */
+.section-description {
+	max-width: 600px;
+	margin: 0 auto 50px;
+	color: var(--text-subtle);
+	font-style: italic;
+	text-align: center;
+}
+
+/* ==========================================================================
+	IMAGE GRID (Index & About)
+	========================================================================== */
+.content-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 25px;
+	padding: 20px 30px; 
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.image-container {
+	background-color: var(--bg-medium);
+	border-radius: 8px;
+	border: 1px solid rgba(0, 255, 255, 0.3); 
+	padding: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+	overflow: hidden;
+	transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.image-container:hover {
+	border-color: var(--neon-start);
+	box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+}
+
+.image-grid-item {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 4px;
+	object-fit: cover;
+}
+
+/* ==========================================================================
+	ABOUT.HTML STYLES (Content and Documentation Links)
+	========================================================================== */
+.about-content-section {
+	padding: 40px 30px 60px;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.about-grid {
+	text-align: left;
+	margin-top: 40px;
+	background-color: var(--bg-medium);
+	padding: 35px;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 0, 255, 0.2);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.text-content h3 {
+	font-size: 24px;
+	color: var(--neon-start); 
+	margin-bottom: 15px;
+	text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+.text-content h4, 
+div.text-content > h4 {
+	font-size: 19px;
+	color: #FF00FF;
+	margin-bottom: 13px;
+	text-shadow: 0 0 5px rgba(226, 197, 226, 0.2);
+}
+
+.text-content h5 {
+	font-size: 10px;
+	color: #cdb4f1; 
+	margin-bottom: 15px;
+	text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+.text-content p {
+	line-height: 1.7;
+	color: var(--text-light);
+	font-size: 16px;
+}
+
+/* Links to Official Documentation */
+.text-content a {
+	color: var(--neon-mid);
+	text-decoration: none;
+	font-weight: bold;
+	transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.text-content a:hover {
+	color: #ffffff;
+	text-shadow: 0 0 8px var(--neon-start), 0 0 15px var(--neon-end);
+}
+
+/* Specific image container inside About */
+.images-grid {
+	margin: 40px 0;
+}
+
+.images-grid .content-grid {
+	grid-template-columns: 1fr; /* Force a single centered column for the concept map */
+	max-width: 800px;
+}
+
+/* ==========================================================================
+	DEVELOPERS.HTML STYLES (Collaborator Cards)
+	========================================================================== */
+
+.collaborators-section {
+	padding: 40px 30px 60px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.developer-focus-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center; 
+	gap: 30px;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+.collaborator-card {
+	background-color: var(--bg-medium);
+	padding: 35px; 
+	border-radius: 12px;
+	transition: transform 0.3s, box-shadow 0.3s;
+	border: 1px solid rgba(255, 0, 255, 0.2); 
+	width: 100%;
+	max-width: 340px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.collaborator-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--neon-end);
+	border-color: var(--neon-end);
+}
+
+.collaborator-name {
+	margin-bottom: 20px;
+}
+
+.collaborator-name a {
+	font-size: 24px;
+	font-weight: 700;
+	color: var(--neon-start);
+	text-decoration: none;
+	transition: color 0.3s;
+}
+
+.collaborator-name a:hover {
+	color: var(--neon-end);
+}
+
+.collaborator-image {
+	width: 100%;
+	min-height: 160px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.profile-badge {
+	max-width: 100%;
+	height: auto;
+	object-fit: contain;
+}
+
+.collaborator-role {
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: var(--text-subtle);
+	font-weight: bold;
+	margin-top: auto;
+}
+
+/* ==========================================================================
+	FORMS & INPUTS (Upload, Delete, Comments)
+	========================================================================== */
+.form-container {
+	max-width: 600px;
+	margin: 0 auto 50px;
+	padding: 0 30px;
+}
+
+.comment-form {
+	background-color: var(--bg-medium);
+	padding: 40px;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 0, 255, 0.2);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	text-align: left;
+}
+
+.form-group label {
+	font-size: 14px;
+	font-weight: bold;
+	color: var(--neon-start);
+	text-shadow: 0 0 3px rgba(0, 255, 255, 0.2);
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+	width: 100%;
+	background-color: var(--bg-dark);
+	border: 1px solid rgba(0, 255, 255, 0.3);
+	border-radius: 6px;
+	padding: 12px 15px;
+	color: var(--text-light);
+	font-size: 15px;
+	font-family: inherit;
+	transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group textarea {
+	resize: vertical;
+	min-height: 120px;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+	outline: none;
+	border-color: var(--neon-start);
+	box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+
+.form-group input[type="file"] {
+	background-color: var(--bg-dark);
+	color: var(--text-subtle);
+	padding: 10px;
+	border: 1px dashed var(--neon-mid);
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.form-group input[type="file"]::file-selector-button {
+	background: var(--bg-medium);
+	border: 1px solid var(--neon-start);
+	color: var(--text-light);
+	padding: 8px 12px;
+	border-radius: 4px;
+	margin-right: 15px;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+	background: var(--neon-start);
+	color: var(--bg-dark);
+}
+
+.submit-button-neon {
+	background: linear-gradient(90deg, var(--neon-start), var(--neon-end));
+	border: none;
+	border-radius: 6px;
+	padding: 15px 20px;
+	color: var(--bg-dark);
+	font-weight: 700;
+	font-size: 16px;
+	cursor: pointer;
+	transition: transform 0.3s, box-shadow 0.3s;
+	margin-top: 15px;
+}
+
+.submit-button-neon:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 5px 15px rgba(255, 0, 255, 0.4);
+}
+
+.comments-section {
+	max-width: 800px;
+	margin: 0 auto 60px;
+	padding: 0 30px;
+}
+
+/* ==========================================================================
+   STICKY FOOTER MECHANICS
+   ========================================================================== */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+main {
+	flex: 1 0 auto;
+	padding-bottom: 40px;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.main-footer {
+	flex-shrink: 0;
+	background-color: var(--bg-footer, #0a0a14);
+	border-top: 1px solid rgba(0, 255, 255, 0.15);
+	padding: 20px 0;
+	position: relative;
+	box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.main-footer::after {
+	content: '';
+	position: absolute;
+	top: -1px;
+	left: 25%;
+	width: 50%;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--neon-end, #FF00FF), transparent);
+}
+
+.footer-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer-copy {
+	font-size: 13px;
+	font-weight: 400;
+	letter-spacing: 1.5px;
+	color: var(--text-subtle, #a0a0a0);
+	text-transform: uppercase;
+	text-shadow: 0 0 4px rgba(134, 129, 236, 0.2);
+	transition: color 0.3s ease;
+}
+
+.main-footer:hover .footer-copy {
+	color: var(--text-light, #e0e0e0);
+}
+
+/* ==========================================================================
+	LOGIN (bonus style)
+	========================================================================== */
+.form-group input[type="password"] {
+	width: 100%;
+	background-color: var(--bg-dark);
+	border: 1px solid rgba(0, 255, 255, 0.3);
+	border-radius: 6px;
+	padding: 12px 15px;
+	color: var(--text-light);
+	font-size: 15px;
+	font-family: inherit;
+	transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input[type="password"]:focus {
+	outline: none;
+	border-color: var(--neon-start);
+	box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}

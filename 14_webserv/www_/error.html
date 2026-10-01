@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Errors - Webserv</title>
+	<link rel="icon" href="data:,">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<header class="main-header">
+		<a href="/index.html" class="logo">Home</a>
+		<nav>
+			<ul style="display: flex; align-items: center;">
+				<li><a href="/developers.html">Developers</a></li>
+				<li><a href="/comments.html">Comments (CGI)</a></li>
+				<li><a href="/files.html">Files (CGI)</a></li>
+				<li><a href="/error.html">Error_checks</a></li>
+				
+				<li style="margin-left: 200px; border-left: 1px solid rgba(255,255,255,0.2); height: 15px;"></li>
+				<li style="margin-left: 5px;"></li>
+				
+				<li><a href="/login.html">Login</a></li>
+				<li><a href="/cgi-bin/profile.php" data-cgi-php="/cgi-bin/profile.php" data-cgi-py="/cgi-bin/profile.py">Profile</a></li>
+				<li><a href="/cgi-bin/logout.php" data-cgi-php="/cgi-bin/logout.php" data-cgi-py="/cgi-bin/logout.py">Logout</a></li>
+			</ul>
+		</nav>
+		<div></div>
+		<select id="cgi-selector" onchange="updateCGI()">
+			<option value=".php">PHP</option>
+			<option value=".py">Python</option>
+		</select>
+	</header>
+
+	<main>
+		<section class="intro-section">
+			<h1 class="main-title">
+				<span class="gradient-text">Error Checks</span>
+			</h1>
+		</section>
+
+		<!-- error 403 -->
+		<section class="intro-section">
+			<h1 class="secondary-title">
+				<span class="gradient-text">403 error example</span>
+			</h1>
+		</section>
+		
+		<section class="form-container" style="text-align: center; margin-bottom: 60px;">
+			<div class="comment-form" style="padding: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+				<p style="color: var(--text-subtle); font-style: italic;">Click below to trigger an HTTP GET request to our CGI backend and view all stored logs.</p>
+				<a href="/cgi-bin/no_permiss.php" class="submit-button-neon" data-cgi-php="/cgi-bin/no_permiss.php" data-cgi-py="/cgi-bin/no_permiss.py" style="text-decoration: none; display: inline-block; width: auto; padding: 12px 30px;">
+					Load Comments (GET)
+				</a>
+			</div>
+		</section>
+
+		<!-- error 405 -->
+		<section class="intro-section" style="margin-top: 50px;">
+			<h1 class="secondary-title">
+				<span class="gradient-text">405 Error Example (POST)</span>
+			</h1>
+		</section>
+
+		<section class="form-container">
+			<div class="comment-form" style="padding: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+				<p style="color: var(--text-subtle); font-style: italic;">We're sending an existing HTTP method (POST) that is not allowed for this route according to the config file. The server should return 405 Method Not Allowed.</p>
+				<form id="post-405-form" class="comment-form">
+					<textarea id="comment-405" name="comment" required></textarea>
+					<button type="submit" class="submit-button-neon">Submit (POST)</button>
+				</form>
+			</div>
+			<script>
+				document.getElementById('post-405-form').addEventListener('submit', function(e) {
+					e.preventDefault();
+					fetch('405_test_log.txt', {
+						method: 'POST',
+						body: new FormData(this)
+					}).then(response => {
+						if (response.status === 405) {
+							alert("Nice. Status: " + response.status + " (Method Not Allowed)");
+						} else {
+							alert("Uh... Status: " + response.status + ". Your server let the POST through. Check your config.");
+						}
+					}).catch(error => {
+						console.error("Error in fetch:", error);
+					});
+				});
+			</script>
+		</section>
+
+		<!-- error 501 -->
+		<section class="intro-section" style="margin-top: 50px;">
+			<h1 class="secondary-title">
+				<span class="gradient-text">501 error example (PATCH)</span>
+			</h1>
+		</section>
+		
+		<section class="form-container">
+			<form id="patch-form" class="comment-form">
+				<textarea id="comment" name="comment" required></textarea>
+				<button type="submit" class="submit-button-neon">Submit (PATCH)</button>
+			</form>
+
+			<script>
+				document.getElementById('patch-form').addEventListener('submit', function(e) {
+					e.preventDefault();
+					fetch('/index.html', {
+						method: 'PATCH',
+						body: new FormData(this)
+					}).then(response => {
+						alert("Status received: " + response.status);
+					});
+				});
+			</script>
+		</section>
+
+		
+
+		<!-- error 501 -->
+		<section class="intro-section" style="margin-top: 50px;">
+			<h1 class="secondary-title">
+				<span class="gradient-text">501 error example (BLA)</span>
+			</h1>
+		</section>
+		
+		<section class="form-container" style="text-align: center; margin-bottom: 60px;">
+			<div class="comment-form" style="padding: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+				<p style="color: var(--text-subtle); font-style: italic;">
+					We're sending an HTTP method that exists but is not supported by our server (BLA). The server should return 501 Not Implemented.
+				</p>
+				<button id="trigger-501" class="submit-button-neon" style="cursor: pointer; border: none; padding: 12px 30px;"> 
+					Trigger 501 (Not Implemented)
+				</button>
+			</div>
+		</section>
+
+		<script>
+			document.getElementById('trigger-501').addEventListener('click', function() {
+				fetch('/index.html', { method: 'BLA' })
+				.then(response => {
+					alert("Status received: " + response.status + " (We were expecting 501)");
+				})
+				.catch(err => alert("Error: " + err));
+			});
+		</script>
+		
+		<!-- error 500 -->
+		<section class="intro-section" style="margin-top: 50px;">
+			<h1 class="secondary-title">
+				<span class="gradient-text">500 error example</span>
+			</h1>
+		</section>
+
+		<section class="form-container" style="text-align: center; margin-bottom: 60px;">
+			<div class="comment-form" style="padding: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+				<p style="color: var(--text-subtle); font-style: italic;">
+					Click below to trigger a faulty CGI script that exits with an internal error (500).
+				</p>
+				<button id="trigger-500" class="submit-button-neon" style="cursor: pointer; border: none; padding: 12px 30px;"> 
+					Trigger 500 (CGI Crash)
+				</button>
+			</div>
+		</section>
+
+		<script>
+				function updateErrorPageCgi() {
+					var selector = document.getElementById('cgi-selector');
+					var extension = selector ? selector.value : '.php';
+					var link = document.querySelector('[data-cgi-php="/cgi-bin/no_permiss.php"]');
+					if (link) {
+						link.href = extension === '.py' ? '/cgi-bin/no_permiss.py' : '/cgi-bin/no_permiss.php';
+					}
+					var trigger = document.getElementById('trigger-500');
+					if (trigger) {
+						trigger.setAttribute('data-cgi-target', extension === '.py' ? '/cgi-bin/internal_server_error.py' : '/cgi-bin/internal_server_error.php');
+					}
+				}
+
+			document.getElementById('trigger-500').addEventListener('click', function() {
+					var selector = document.getElementById('cgi-selector');
+					var extension = selector && selector.value === '.py' ? '.py' : '.php';
+					fetch(extension === '.py' ? '/cgi-bin/internal_server_error.py' : '/cgi-bin/internal_server_error.php', { method: 'GET' })
+				.then(response => {
+					if (response.status === 500) {
+						alert("Success! The server caught the 500 error from the CGI");
+					} else {
+						alert("The server responded with: " + response.status + " (500 were expected)");
+					}
+				})
+				.catch(err => alert("Connection error: " + err));
+			});
+				var cgiSelector = document.getElementById('cgi-selector');
+				if (cgiSelector) {
+					cgiSelector.addEventListener('change', updateErrorPageCgi);
+				}
+				updateErrorPageCgi();
+		</script>
+
+	</main>
+	<script src="/js/cgi-switcher.js"></script>
+
+	<footer class="main-footer">
+		<div class="footer-container">
+			<p class="footer-copy">&copy; 2026 Webserv.</p>
+		</div>
+	</footer>
+</body>
+</html>

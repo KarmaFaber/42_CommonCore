@@ -1,0 +1,60 @@
+#◉────▣───▢◇▢───▣────◉•◉───▣───▢   Colors:   ▢───▣───◉•◉───▣────▢◇▢───▣───◉#
+
+BLACK   := \033[0;30m
+RED     := \033[0;31m
+GREEN   := \033[0;32m
+YELLOW  := \033[0;33m
+BLUE    := \033[0;34m
+MAGENTA := \033[0;35m
+CYAN    := \033[0;36m
+
+CURRENT_COLOR := \033[0;34m
+RESET   := \033[0m
+
+#◉───▣───▢◇▢───▣───◉•◉───▣───▢   Variables:   ▢───▣───◉•◉───▣───▢◇▢───▣───◉#
+
+NAME        := pipex
+CC          := cc
+CFLAGS      := -Wall -Wextra -Werror 
+RM          := rm -rf
+
+#◉───▣───▢◇▢───▣───◉•◉───▣───▢ Libft Variables ▢───▣───◉•◉───▣───▢◇▢───▣──◉#
+
+LIBFT_DIR	:= libft/
+LIBFT		:= $(LIBFT_DIR)/libft.a
+INCLUDES_LIBFT := -I$(LIBFT_DIR)
+
+#◉───▣───▢◇▢───▣───◉•◉───▣───▢ pipex srcs ▢───▣───◉•◉───▣───▢◇▢───▣───◉#
+
+PIPEX_SRCS	:= pipex.c pipex_utils.c
+PIPEX_OBJS	:= $(PIPEX_SRCS:.c=.o)
+
+#◉───▣───▢◇▢───▣───◉•◉───▣───▢     rules      ▢───▣───◉•◉───▣───▢◇▢───▣───◉#
+
+all: $(LIBFT) $(NAME)
+
+$(LIBFT): $(LIBFT_DEPS)
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(NAME): $(LIBFT) $(PIPEX_OBJS) 
+	$(CC) $(CFLAGS) -o $(NAME) $(PIPEX_OBJS) -L$(LIBFT_DIR) -lft $(INCLUDES_LIBFT) 
+	@echo "$(CURRENT_COLOR) ✅ $(NAME) created.\n$(RESET)"
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES_LIBFT) -c $< -o $@ 
+
+clean:
+	$(RM) $(PIPEX_OBJS)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@echo "$(CURRENT_COLOR)🧹All object files have been cleaned.\n$(RESET)"
+
+fclean: clean
+	$(RM) $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@echo "$(CURRENT_COLOR)🧹 $(NAME) and libft.a: have been cleaned.\n$(RESET)"
+
+re: fclean all
+
+#◉───▣───▢◇▢───▣───◉•◉───▣───▢ Phony targets  ▢───▣───◉•◉───▣───▢◇▢───▣───◉#
+
+.PHONY: all clean fclean re 

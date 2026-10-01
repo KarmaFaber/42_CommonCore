@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login - Webserv</title>
+	<link rel="icon" href="data:,">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<header class="main-header">
+		<a href="/index.html" class="logo">Home</a>
+		<nav>
+			<ul style="display: flex; align-items: center;">
+				<li><a href="/developers.html">Developers</a></li>
+				<li><a href="/comments.html">Comments (CGI)</a></li>
+				<li><a href="/files.html">Files (CGI)</a></li>
+				<li><a href="/error.html">Error_checks</a></li>
+				
+				<li style="margin-left: 200px; border-left: 1px solid rgba(255,255,255,0.2); height: 15px;"></li>
+				<li style="margin-left: 5px;"></li>
+				
+				<li><a href="/login.html">Login</a></li>
+				<li><a href="/cgi-bin/profile.php" data-cgi-php="/cgi-bin/profile.php" data-cgi-py="/cgi-bin/profile.py">Profile</a></li>
+				<li><a href="/cgi-bin/logout.php" data-cgi-php="/cgi-bin/logout.php" data-cgi-py="/cgi-bin/logout.py">Logout</a></li>
+			</ul>
+		</nav>
+		<div></div>
+		<select id="cgi-selector" onchange="updateCGI()">
+			<option value=".php">PHP</option>
+			<option value=".py">Python</option>
+		</select>
+	</header>
+
+	<main style="min-height: calc(100vh - 200px); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		<section class="intro-section" style="margin-bottom: 10px;">
+			<h1 class="main-title">
+				<span class="gradient-text">Authentication</span>
+			</h1>
+		</section>
+		
+		<section class="form-container" style="width: 100%; max-width: 450px;">
+			<form class="comment-form login-card-form" method="POST" action="/cgi-bin/login.php" data-cgi-php="/cgi-bin/login.php" data-cgi-py="/cgi-bin/login.py">
+				<p style="color: var(--text-subtle); margin-bottom: 15px; font-style: italic; text-align: center;">
+					Enter your credentials to manage session cookies.
+				</p>
+				
+				<div class="form-group">
+					<label for="username">Username:</label>
+					<input type="text" id="username" name="username" required placeholder="username...">
+				</div>
+				
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input type="text" id="email" name="email" required placeholder="place@holder.com">
+				</div>
+				
+				<button type="submit" class="submit-button-neon">Sign In</button>
+			</form>
+		</section>
+	</main>
+	<script src="/js/cgi-switcher.js"></script>
+	<footer class="main-footer">
+		<div class="footer-container">
+			<p class="footer-copy">&copy; 2026 Webserv.</p>
+		</div>
+	</footer>
+</body>
+</html>

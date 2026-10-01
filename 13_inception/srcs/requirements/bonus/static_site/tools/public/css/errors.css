@@ -1,0 +1,95 @@
+/* Shared error page styles */
+.error-page {
+	--error-start: #00aaff;
+	--error-end: #6600ff;
+}
+
+.error-page .error-container {
+	min-height: 80vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.error-page .error-code {
+	font-size: 8rem;
+	font-weight: 900;
+	background: linear-gradient(90deg, var(--error-start), var(--error-end));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+	text-shadow: 0 0 10px var(--error-start), 0 0 20px var(--error-end);
+	margin-bottom: 20px;
+}
+
+.error-page .error-message {
+	font-size: 2rem;
+	color: var(--text-light);
+	text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+	margin-bottom: 40px;
+}
+
+.error-page .back-link {
+	font-size: 1.2rem;
+	color: var(--error-start);
+	text-decoration: none;
+	padding: 10px 20px;
+	border: 2px solid var(--error-start);
+	border-radius: 5px;
+	transition: all 0.3s;
+	box-shadow: 0 0 5px var(--error-start);
+}
+
+.error-page .back-link:hover {
+	background-color: var(--error-start);
+	color: var(--bg-dark);
+	box-shadow: 0 0 15px var(--error-end);
+}
+
+.error-page.error-400 {
+	--error-start: #ff6600;
+	--error-end: #cc00ff;
+}
+
+.error-page.error-413 {
+	--error-start: #00ffd5;
+	--error-end: #0066ff;
+}
+
+.error-page.error-403 {
+	--error-start: #ff0000;
+	--error-end: #ffff00;
+}
+
+.error-page.error-404 {
+	--error-start: #00ff00;
+	--error-end: #00ffff;
+}
+
+.error-page.error-405 {
+	--error-start: #ff00ff;
+	--error-end: #ff69b4;
+}
+
+.error-page.error-500 {
+	--error-start: #ffff00;
+	--error-end: #ff0000;
+}
+
+.error-page.error-50x {
+	--error-start: #b6ff00;
+	--error-end: #ff8c00;
+}
+
+.error-page.error-501 {
+	--error-start: #00ffff;
+	--error-end: #e0ffff;
+}
+
+.error-page.error-505 {
+	--error-start: #00aaff;
+	--error-end: #6600ff;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Webserv</title>
+	<link rel="icon" href="data:,">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+	<header class="main-header">
+		<a href="/index.html" class="logo">Home</a>
+		<nav>
+			<ul style="display: flex; align-items: center;">
+				<li><a href="/developers.html">Developers</a></li>
+				<li><a href="/comments.html">Comments (CGI)</a></li>
+				<li><a href="/files.html">Files (CGI)</a></li>
+				<li><a href="/error.html">Error_checks</a></li>
+				
+				<li style="margin-left: 200px; border-left: 1px solid rgba(255,255,255,0.2); height: 15px;"></li>
+				<li style="margin-left: 5px;"></li>
+				
+				<li><a href="/login.html">Login</a></li>
+				<li><a href="/cgi-bin/profile.php" data-cgi-php="/cgi-bin/profile.php" data-cgi-py="/cgi-bin/profile.py">Profile</a></li>
+				<li><a href="/cgi-bin/logout.php" data-cgi-php="/cgi-bin/logout.php" data-cgi-py="/cgi-bin/logout.py">Logout</a></li>
+			</ul>
+		</nav>
+		<div></div>
+		<select id="cgi-selector" onchange="updateCGI()">
+			<option value=".php">PHP</option>
+			<option value=".py">Python</option>
+		</select>
+	</header>
+
+	<main>
+		<section class="intro-section">
+			<h1 class="main-title">
+				<span class="gradient-text">Webserv</span>
+			</h1>
+		</section>
+
+		<!-- Main content section -->
+		<section class="about-content-section">
+			<h2 class="secondary-title" style="text-align: center;">
+				<span class="gradient-text">About Webserv 2026</span>
+			</h2>
+			
+			<div class="about-grid">
+				<div class="text-content">
+					<h3>The Heart of 42 Madrid</h3>
+					<br>
+					<p>Webserv is not just a project; it is the cornerstone of the network and low-level programming module at 42 Madrid. This HTTP/1.1 server is built from scratch in C++, handling simultaneous connections, request parsing, file management, and error handling.</p>
+					<br>
+					<p>It represents our dedication to understanding how the internet works at a fundamental level.</p>
+					<br>
+					<p>The primary objective is to demonstrate an understanding of network protocols and the implementation of a robust and efficient server capable of serving static content and handling complex POST forms.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- resource -- links section -->
+		<section class="about-content-section">
+			<h2 class="secondary-title" style="text-align: center;">
+				<span class="gradient-text">Useful links</span>
+			</h2>
+			<div class="about-grid">
+				<div class="text-content">
+					
+					<br>
+					<h4>NGINX:</h4>
+					- <a href="http://nginx.org/en/docs/beginners_guide.html" target="_blank" rel="noopener noreferrer">Beginner’s Guide to NGINX</a><br>
+					- <a href="https://www.varonis.com/fr/blog/serveur-proxy" target="_blank" rel="noopener noreferrer">What is a proxy server</a><br>
+					- <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html" target="_blank" rel="noopener noreferrer">All nginx definitions</a><br>
+					- <a href="https://www.nginx.com/resources/wiki/start/topics/tutorials/commandline/" target="_blank" rel="noopener noreferrer">Nginx Command line</a><br>
+					- <a href="https://cloud.google.com/architecture/best-practices-for-building-containers#signal-handling" target="_blank" rel="noopener noreferrer">PID 1 signal handling & nginx</a><br>
+					- <a href="https://www.digitalocean.com/community/tutorials/nginx-location-directive" target="_blank" rel="noopener noreferrer">nginx location directive explanations</a><br><br>
+
+					<h4>WEB:</h4>
+					- <a href="https://flowbite.com/" target="_blank" rel="noopener noreferrer">Flowbite Components</a><br>
+					- <a href="https://uiverse.io/" target="_blank" rel="noopener noreferrer">Uiverse UI Elements</a><br>
+					- <a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener noreferrer">MDN Web Docs</a><br>
+					- <a href="https://css-tricks.com/" target="_blank" rel="noopener noreferrer">CSS-Tricks Almanac</a><br>
+				</div>
+			</div>
+		</section>
+
+		<!-- Image section -->
+		<h2 class="secondary-title" style="text-align: center;">
+				<span class="gradient-text">Sample output</span>
+		</h2>
+		<section class="content-grid">
+			<div class="image-container">
+				<img src="/images/loguer.jpg" alt="loguer 1" class="image-grid-item">
+			</div>
+		</section>
+	</main>
+	<script src="/js/cgi-switcher.js"></script>
+
+	<footer class="main-footer">
+		<div class="footer-container">
+			<p class="footer-copy">&copy; 2026 Webserv.</p>
+		</div>
+	</footer>
+</body>
+</html>

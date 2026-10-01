@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inception - Playground</title>
+    <link rel="icon" href="data:,">
+    
+    <!-- Main page styles -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/playground.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="playground-body">
+
+    <!-- Navigation header (same as in index.html) -->
+    <header class="main-header">
+        <a href="/static/index.html" class="logo">Home</a>
+        <nav>
+            <ul>
+                <li><a href="/static/developers.html">Developer</a></li>
+                <li><a href="/adminer/">Adminer</a></li>
+                <li><a href="/catvisor/">cAdvisor</a></li>
+                 <li><a href="/static/playground.html">Playground</a></li>
+            </ul>
+        </nav>
+        <div></div>
+    </header>
+
+    <!-- Main page content -->
+    <main>
+        <!-- Container for the Three.js animation -->
+        <div id="container"></div>
+        
+        <!-- Animation controls -->
+        <div class="input-container">
+            <div class="input-wrapper">
+                <input type="text" id="morphText" placeholder="Type something..." maxlength="20">
+                <button id="typeBtn">
+                    <span class="button-content">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Create</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Animation scripts (at the end of the body) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="/static/js/playground.js"></script>
+
+</body>
+</html>

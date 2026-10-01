@@ -1,0 +1,105 @@
+name: inception
+
+networks:
+    inception_net:
+        driver: bridge
+
+volumes:
+    mariadb_data:
+        driver: local
+        driver_opts:
+             type: none
+             o: bind
+             device: ${DB_DATA}
+    wordpress_data:
+        driver: local
+        driver_opts:
+             type: none
+             o: bind
+             device: ${WP_DATA}
+
+services:
+    mariadb:
+        container_name: mariadb
+        build: ./requirements/mariadb/
+        image: mariadb
+        pull_policy: build
+        restart: unless-stopped
+        env_file: .env
+        networks:
+            - inception_net
+        volumes:
+            - mariadb_data:/var/lib/mysql
+    wordpress:
+        container_name: wordpress
+        build: ./requirements/wordpress/
+        image: wordpress
+        pull_policy: build
+        restart: unless-stopped
+        env_file: .env
+        depends_on:
+            - mariadb
+        networks:
+            - inception_net
+        volumes:
+            - wordpress_data:/var/www/html
+    nginx:
+        container_name: nginx
+        build: ./requirements/nginx/
+        image: nginx
+        ports:
+            - "443:443"
+        pull_policy: build
+        restart: unless-stopped
+        env_file: .env
+        depends_on:
+            - wordpress
+        networks:
+             - inception_net
+        volumes:
+             - wordpress_data:/var/www/html
+#BONUS services:
+    static_site:
+        container_name: static_site
+        build: ./requirements/bonus/static_site/
+        image: static_site
+        restart: unless-stopped
+        pull_policy: build
+        networks:
+            - inception_net
+    adminer:
+        container_name: adminer
+        build: ./requirements/bonus/adminer/
+        image: adminer
+        restart: unless-stopped
+        pull_policy: build
+        networks:
+            - inception_net
+        depends_on:
+            - mariadb
+    ftp:
+        container_name: ftp
+        build: ./requirements/bonus/ftp/
+        restart: unless-stopped
+        pull_policy: build
+        networks:
+        - inception_net
+        ports:
+        - "21:21"
+        - "21000-21010:21000-21010"
+        environment:
+            FTP_USER: ${FTP_USER}
+            FTP_PASS: ${FTP_PASS}
+        volumes:
+            - wordpress_data:/var/www/html
+    catvisor:
+        container_name: catvisor
+        build: ./requirements/bonus/catvisor/
+        pull_policy: build
+        restart: unless-stopped
+        networks:
+            - inception_net
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        ports:
+            - "3000:3000"

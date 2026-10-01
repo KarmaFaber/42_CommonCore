@@ -1,0 +1,363 @@
+/* ==========================================================================
+	COLOR VARIABLES (CMY palette: Cyan, Magenta, Dark tones)
+	========================================================================== */
+:root {
+	--bg-dark: #0f0f1d; 
+	--bg-medium: #1c1c30; 
+	--bg-footer: #0a0a14; 
+
+	/* CMY accent colors */
+	--neon-start: #00FFFF;
+	--neon-mid: #8681ec;
+	--neon-end: #FF00FF;
+	--text-light: #e0e0e0;
+	--text-subtle: #a0a0a0;
+}
+
+/* ==========================================================================
+	GLOBAL & BASE STYLES
+	========================================================================== */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	color: var(--text-light);
+}
+
+body {
+	background-color: var(--bg-dark);
+	min-height: 100vh;
+	padding: 0; 
+	padding-bottom: 40px; /* Space so content breathes before the footer */
+}
+
+/* ==========================================================================
+	HEADER & NAVIGATION
+	========================================================================== */
+.main-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 25px 30px; 
+	position: relative;
+	background-color: var(--bg-dark);
+}
+
+/* Neon divider line */
+.main-header::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: linear-gradient(90deg, var(--neon-start), var(--neon-end));
+	box-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+}
+
+/* Logo / corner links */
+.logo {
+	font-size: 18px;
+	font-weight: 700;
+	background: linear-gradient(90deg, var(--neon-start), var(--neon-end));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+	text-decoration: none;
+	cursor: pointer;
+	transition: text-shadow 0.3s ease-in-out;
+}
+
+.logo:hover {
+	text-shadow: 0 0 5px var(--neon-start), 0 0 15px var(--neon-end); 
+}
+
+/* Navigation menu */
+nav ul {
+	list-style: none;
+	display: flex;
+	gap: 25px;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 15px;
+	padding: 5px 0;
+	transition: color 0.3s;
+	color: var(--text-subtle);
+	position: relative;
+}
+
+nav a:hover {
+	color: var(--text-light);
+}
+
+/* Animated underline for the menu */
+nav a::after {
+	content: '';
+	position: absolute;
+	bottom: -5px;
+	left: 50%;
+	transform: translateX(-50%) scaleX(0);
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, var(--neon-start), var(--neon-end));
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+	border-radius: 1px;
+}
+
+nav a:hover::after {
+	transform: translateX(-50%) scaleX(1);
+	box-shadow: 0 0 5px var(--neon-start);
+}
+
+/* ==========================================================================
+	INTRODUCTION SECTIONS & TITLES
+	========================================================================== */
+.intro-section {
+	padding: 60px 30px 40px; 
+	text-align: center;
+}
+
+.main-title, .secondary-title {
+	font-size: 4rem;
+	font-weight: 700;
+	letter-spacing: 2px;
+	position: relative;
+	display: inline-block;
+	transition: text-shadow 0.5s ease-in-out; 
+
+	/* Title centering */
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+
+.secondary-title {
+	font-size: 3rem;
+	margin-bottom: 40px;
+}
+
+.main-title:hover, .secondary-title:hover {
+	text-shadow: 0 0 3px var(--neon-start), 0 0 6px var(--neon-end);
+}
+
+.gradient-text {
+	background: linear-gradient(90deg, var(--neon-start) 0%, var(--neon-end) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+
+	/* Additional centering for this class */
+	display: inline;
+}
+
+/* Decorative underline for titles */
+.main-title::after, .secondary-title::after {
+	content: '';
+	display: block;
+	width: 60%;
+	height: 3px;
+	background: linear-gradient(90deg, var(--neon-start), var(--neon-end));
+	margin: 10px auto 0;
+	box-shadow: 0 0 8px var(--neon-start);
+	border-radius: 2px;
+}
+
+.secondary-title::after {
+	width: 30%; 
+}
+
+/* Section descriptors */
+.section-description {
+	max-width: 600px;
+	margin: 0 auto 50px;
+	color: var(--text-subtle);
+	font-style: italic;
+	text-align: center;
+}
+
+/* ==========================================================================
+	IMAGE GRID (Index & About)
+	========================================================================== */
+.content-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 25px;
+	padding: 20px 30px; 
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.image-container {
+	background-color: var(--bg-medium);
+	border-radius: 8px;
+	border: 1px solid rgba(0, 255, 255, 0.3); 
+	padding: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+	overflow: hidden;
+	transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.image-container:hover {
+	border-color: var(--neon-start);
+	box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+}
+
+.image-grid-item {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 4px;
+	object-fit: cover;
+}
+
+/* ==========================================================================
+	ABOUT.HTML STYLES (Content and Documentation Links)
+	========================================================================== */
+.about-content-section {
+	padding: 40px 30px 60px;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.about-grid {
+	text-align: left;
+	margin-top: 40px;
+	background-color: var(--bg-medium);
+	padding: 35px;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 0, 255, 0.2);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.text-content h3 {
+	font-size: 24px;
+	color: var(--neon-start); 
+	margin-bottom: 15px;
+	text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+.text-content h4, 
+div.text-content > h4 {
+	font-size: 19px;
+	color: #FF00FF;
+	margin-bottom: 13px;
+	text-shadow: 0 0 5px rgba(226, 197, 226, 0.2);
+}
+
+.text-content h5 {
+	font-size: 10px;
+	color: #cdb4f1; 
+	margin-bottom: 15px;
+	text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+.text-content p {
+	line-height: 1.7;
+	color: var(--text-light);
+	font-size: 16px;
+}
+
+/* Links to Official Documentation */
+.text-content a {
+	color: var(--neon-mid);
+	text-decoration: none;
+	font-weight: bold;
+	transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.text-content a:hover {
+	color: #ffffff;
+	text-shadow: 0 0 8px var(--neon-start), 0 0 15px var(--neon-end);
+}
+
+/* Specific image container inside About */
+.images-grid {
+	margin: 40px 0;
+}
+
+.images-grid .content-grid {
+	grid-template-columns: 1fr; /* Force a single centered column for the concept map */
+	max-width: 800px;
+}
+
+/* ==========================================================================
+	DEVELOPERS.HTML STYLES (Single Card)
+	========================================================================== */
+.collaborators-section {
+	padding: 40px 30px 60px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.developer-focus-grid {
+	display: flex;
+	justify-content: center; 
+	padding: 0 20px;
+	margin-top: 20px;
+}
+
+.collaborator-card {
+	background-color: var(--bg-medium);
+	padding: 35px; 
+	border-radius: 12px;
+	transition: transform 0.3s, box-shadow 0.3s;
+	border: 1px solid rgba(255, 0, 255, 0.2); 
+	max-width: 420px; 
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.collaborator-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--neon-end);
+}
+
+.collaborator-name a {
+	font-size: 24px;
+	font-weight: 700;
+	color: var(--neon-end);
+	text-decoration: none; 
+	transition: color 0.3s, text-shadow 0.3s;
+}
+
+.collaborator-name a:hover {
+	color: var(--neon-start);
+	text-shadow: 0 0 8px var(--neon-start);
+}
+
+.collaborator-role {
+	font-size: 14px;
+	color: var(--text-subtle);
+	font-style: italic;
+	margin-top: 15px;
+	letter-spacing: 1px;
+}
+
+.collaborator-image {
+	margin: 25px auto;
+	width: 100%;
+	max-width: 300px;
+}
+
+.profile-badge {
+	border-radius: 8px;
+	width: 100%; 
+	height: auto;
+	border: 2px solid var(--neon-start);
+	transition: box-shadow 0.3s, transform 0.3s;
+	display: block;
+}
+
+.profile-badge:hover {
+	box-shadow: 0 0 15px var(--neon-start);
+	transform: scale(1.02);
+}

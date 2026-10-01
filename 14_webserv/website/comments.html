@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comments - Webserv</title>
+	<link rel="icon" href="data:,">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<header class="main-header">
+		<a href="/index.html" class="logo">Home</a>
+		<nav>
+			<ul style="display: flex; align-items: center;">
+				<li><a href="/developers.html">Developers</a></li>
+				<li><a href="/comments.html">Comments (CGI)</a></li>
+				<li><a href="/files.html">Files (CGI)</a></li>
+				<li><a href="/error.html">Error_checks</a></li>
+				
+				<li style="margin-left: 200px; border-left: 1px solid rgba(255,255,255,0.2); height: 15px;"></li>
+				<li style="margin-left: 5px;"></li>
+				
+				<li><a href="/login.html">Login</a></li>
+				<li><a href="/cgi-bin/profile.php" data-cgi-php="/cgi-bin/profile.php" data-cgi-py="/cgi-bin/profile.py">Profile</a></li>
+				<li><a href="/cgi-bin/logout.php" data-cgi-php="/cgi-bin/logout.php" data-cgi-py="/cgi-bin/logout.py">Logout</a></li>
+			</ul>
+		</nav>
+		<div></div>
+		<select id="cgi-selector" onchange="updateCGI()">
+			<option value=".php">PHP</option>
+			<option value=".py">Python</option>
+		</select>
+	</header>
+
+	<main>
+		<!-- comments_submit -->
+		<section class="intro-section">
+			<h1 class="secondary-title">
+				<span class="gradient-text">Post a Comment (CGI)</span>
+			</h1>
+		</section>
+		
+		<section class="form-container">
+			<form class="comment-form" method="POST" action="/cgi-bin/comments_submit.php" data-cgi-php="/cgi-bin/comments_submit.php" data-cgi-py="/cgi-bin/comments_submit.py">
+				<p style="color: var(--text-subtle); margin-bottom: 20px; font-style: italic; text-align: center;">Use this form to test the HTTP POST method on the server.</p>
+				<div class="form-group">
+					<label for="username">Username:</label>
+					<input type="text" id="username" name="username" required placeholder="@Your_Handle">
+				</div>
+				<div class="form-group">
+					<label for="subject">Subject:</label>
+					<input type="text" id="subject" name="subject" required placeholder="Brief summary of your comment">
+				</div>
+				<div class="form-group">
+					<label for="comment">Comment Body:</label>
+					<textarea id="comment" name="comment" required placeholder="Write your feedback or test results here..."></textarea>
+				</div>
+				<button type="submit" class="submit-button-neon">Submit Comment (POST)</button>
+			</form>
+		</section>
+		
+		<!-- comments_view -->
+		<section class="intro-section">
+			<h1 class="secondary-title">
+				<span class="gradient-text">Read Board (CGI)</span>
+			</h1>
+		</section>
+		
+		<section class="form-container" style="text-align: center; margin-bottom: 60px;">
+			<div class="comment-form" style="padding: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+				<p style="color: var(--text-subtle); font-style: italic;">Click below to trigger an HTTP GET request to our CGI backend and view all stored logs.</p>
+				<a href="/cgi-bin/comments_view.php" class="submit-button-neon" data-cgi-php="/cgi-bin/comments_view.php" data-cgi-py="/cgi-bin/comments_view.py" style="text-decoration: none; display: inline-block; width: auto; padding: 12px 30px;">
+					Load Comments (GET)
+				</a>
+			</div>
+		</section>
+	</main>
+	<script src="/js/cgi-switcher.js"></script>
+
+	<footer class="main-footer">
+		<div class="footer-container">
+			<p class="footer-copy">&copy; 2026 Webserv.</p>
+		</div>
+	</footer>
+</body>
+</html>

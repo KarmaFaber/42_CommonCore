@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Developers - Webserv</title>
+	<link rel="icon" href="data:,">
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<header class="main-header">
+		<a href="/index.html" class="logo">Home</a>
+		<nav>
+			<ul style="display: flex; align-items: center;">
+				<li><a href="/developers.html">Developers</a></li>
+				<li><a href="/comments.html">Comments (CGI)</a></li>
+				<li><a href="/files.html">Files (CGI)</a></li>
+				<li><a href="/error.html">Error_checks</a></li>
+				
+				<li style="margin-left: 200px; border-left: 1px solid rgba(255,255,255,0.2); height: 15px;"></li>
+				<li style="margin-left: 5px;"></li>
+				
+				<li><a href="/login.html">Login</a></li>
+				<li><a href="/cgi-bin/profile.php" data-cgi-php="/cgi-bin/profile.php" data-cgi-py="/cgi-bin/profile.py">Profile</a></li>
+				<li><a href="/cgi-bin/logout.php" data-cgi-php="/cgi-bin/logout.php" data-cgi-py="/cgi-bin/logout.py">Logout</a></li>
+			</ul>
+		</nav>
+		<div></div>
+		<select id="cgi-selector" onchange="updateCGI()">
+			<option value=".php">PHP</option>
+			<option value=".py">Python</option>
+		</select>
+	</header>
+
+	<main>
+		<section class="collaborators-section">
+			<h1 class="secondary-title" style="text-align: center; margin-bottom: 20px;">
+				<span class="gradient-text">Our Developers</span>
+			</h1>
+			
+			<p class="section-description" style="text-align: center; color: var(--text-subtle); max-width: 600px; margin: 0 auto 40px; font-style: italic;">
+				Webserv's success is thanks to the efforts of our developers. Meet the team!
+			</p>
+
+			<div class="developer-focus-grid">
+				
+				<div class="collaborator-card">
+					<h3 class="collaborator-name">
+						<a href="https://github.com/mzolotar" target="_blank" rel="noopener noreferrer">
+							mzolotar
+						</a>
+					</h3>
+					<div class="collaborator-image">
+						<a href="https://github.com/oakoudad/badge42" target="_blank" rel="noopener noreferrer">
+							<img src="https://badge.mediaplus.ma/binary/mzolotar?1337Badge=off&UM6P=off" alt="42 Profile Badge mzolotar" class="profile-badge">
+						</a>
+					</div>
+					<p class="collaborator-role">42 Student</p>
+				</div>
+
+				<div class="collaborator-card">
+					<h3 class="collaborator-name">
+						<a href="https://github.com/jllamas-" target="_blank" rel="noopener noreferrer">
+							jllamas-
+						</a>
+					</h3>
+					<div class="collaborator-image">
+						<a href="https://github.com/oakoudad/badge42" target="_blank" rel="noopener noreferrer">
+							<img src="https://badge.mediaplus.ma/binary/jllamas-?1337Badge=off&UM6P=off" alt="42 Profile Badge jllamas-" class="profile-badge">
+						</a>
+					</div>
+					<p class="collaborator-role">42 Student</p>
+				</div>
+
+				<div class="collaborator-card">
+					<h3 class="collaborator-name">
+						<a href="https://github.com/antoniof" target="_blank" rel="noopener noreferrer">
+							antoniof
+						</a>
+					</h3>
+					<div class="collaborator-image">
+						<a href="https://github.com/oakoudad/badge42" target="_blank" rel="noopener noreferrer">
+							<img src="https://badge.mediaplus.ma/binary/antoniof?1337Badge=off&UM6P=off" alt="42 Profile Badge antoniof" class="profile-badge">
+						</a>
+					</div>
+					<p class="collaborator-role">42 Student</p>
+				</div>
+
+			</div>
+		</section>
+	</main>
+	<script src="/js/cgi-switcher.js"></script>
+	<footer class="main-footer">
+		<div class="footer-container">
+			<p class="footer-copy">&copy; 2026 Webserv.</p>
+		</div>
+	</footer>
+</body>
+</html>
