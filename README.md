@@ -11,7 +11,7 @@ A centralized repository containing foundational and advanced software engineeri
 | **Networking & APIs** | [**webserv**](./14_webserv) | `C++98` `Sockets` | Non-blocking HTTP/1.1 server (RFC 7230), I/O multiplexing (`select`/`poll`/`epoll`) | Event loops, state machines, non-blocking I/O, CGI execution |
 | **UNIX Internals** | [**minishell**](./9_minishell) | `C` `POSIX` | POSIX CLI command interpreter with pipelines, redirections, and process isolation | `fork`, `execve`, `dup2`, AST parsing, asynchronous signals |
 | **Concurrency** | [**philosophers**](./8_philosophers) | `C` `pthreads` | Multi-threaded resource contention engine solving the Dining Philosophers problem | POSIX threads, mutexes, deadlock/race condition prevention |
-| **Graphics & Sim** | [**cub3D**](./11_cub3d) | `C` `MiniLibX` | 3D raycasting engine with DDA line traversal and wall collision bounding | Trigonometry, linear algebra, raw frame buffers, matrix parsing |
+| **Graphics & Sim** | [**cub3D**](./11_cub3D) | `C` `MiniLibX` | 3D raycasting engine with DDA line traversal and wall collision bounding | Trigonometry, linear algebra, raw frame buffers, matrix parsing |
 | **Systems & Cloud** | [**Inception**](./13_inception) | `Docker` `DevOps` | Microservices infrastructure built from base OS images with TLS termination | Docker Compose, reverse proxy (Nginx), volume isolation |
 
 ---
@@ -57,7 +57,7 @@ A centralized repository containing foundational and advanced software engineeri
 ## 🧩 Algorithms, Spatial Mathematics & Graphics
 
 ### 2D & 3D Interactive Graphics Engines
-* **[cub3D (C / Raycasting)](./11_cub3d)**: Real-time 3D maze rendering engine inspired by *Wolfenstein 3D*. Features Digital Differential Analysis (DDA) grid traversal, dynamic perspective-correct wall texture mapping, directional lighting offsets, and sliding wall collision bounding.
+* **[cub3D (C / Raycasting)](./11_cub3D)**: Real-time 3D maze rendering engine inspired by *Wolfenstein 3D*. Features Digital Differential Analysis (DDA) grid traversal, dynamic perspective-correct wall texture mapping, directional lighting offsets, and sliding wall collision bounding.
 * **[so_long (C / 2D Tile Engine)](./6_so_long)**: Lightweight 2D top-down game built with MiniLibX (X11). Incorporates recursive flood-fill pathfinding validation to verify map solvability before memory allocation, real-time sprite rendering, and non-blocking event loops.
 
 ### Algorithmic Optimization & Data Structures
