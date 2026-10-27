@@ -89,3 +89,9 @@ Dedicated verification suites constructed to enforce zero memory leaks, validate
 * **[ft_printf_test](https://github.com/KarmaFaber/ft_printf_test)**: Differential test harness benchmarking formatting flags, pointer addresses, and integer overflows directly against system `glibc`.
 * **[GetNextLine_test](https://github.com/KarmaFaber/GetNextLine_test)**: Boundary suite stressing buffer thresholds (1 byte to 10 MB), binary files, and abrupt descriptor revocations under strict `valgrind` tracing.
 
+## 📏 Code Quality & Static Analysis Compliance
+All C source code strictly adheres to an uncompromising, safety-oriented coding standard inspired by the **Linux Kernel Coding Style** and defensive systems programming guidelines:
+- **Modularity & Complexity Limits**: Functions are capped at 25 lines with strict cyclomatic complexity constraints (maximum of 4 parameters and 5 local variables per function).
+- **Predictable Control Flow**: Prohibition of global variables, goto statements, and uncontrolled side effects to ensure predictable memory states.
+- **Deterministic Resource Management**: Every allocation is audited for immediate null-pointer validation and symmetric deallocation (zero dangling pointers / zero memory leaks).
+- **Automated Style & Linter Enforcement**: Codebase validated against static style conformance linters prior to compilation with strict warning flags (`-Wall -Wextra -Werror`).
