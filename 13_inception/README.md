@@ -11,7 +11,7 @@ This project implements a **LEMP-like stack** (Linux, Nginx, MariaDB, PHP) using
 - **Base Image:** All containers are built using **Debian Bullseye** for stability and security.
 - **Initialization:** We use custom entrypoint scripts and **WP-CLI** to automate the setup, ensuring the site is ready on the first launch.
 
-![alt text](/images/mandatory.png)
+![alt text](images/mandatory.png)
 
 ### 🚀 Why this startup order?
 mariadb ➡️ wordpress ➡️ nginx
@@ -49,7 +49,7 @@ Docker is a containerization platform that enables developers and teams to packa
 ## What are a Container?
 A container is a lightweight, standalone, and executable package that includes everything needed to run an application—such as code, runtime, libraries, environment variables, and configuration files. Containers are isolated from each other and from the host system, ensuring that each application component runs in its own environment without interfering with others.
 
-![alt text](/images/docker_container_lifecycle.png)
+![alt text](images/docker_container_lifecycle.png)
 
 ## What is a docker image?
 A Docker image is a read-only template that contains the instructions for creating a Docker container. It includes everything needed to run an application, such as the application code, runtime, libraries, environment variables, and configuration files. Images are often based on other images, with additional customizations layered on top.
@@ -63,7 +63,7 @@ When working with containers, it's crucial to understand how data is stored, as 
 
 This key distinction between a container and a volume creates persistence. As the right side of the diagram illustrates, when containers are removed (even forcefully deleted), the volume and its contents remain. This is because the volume is not tied to the container's lifecycle. Data created, modified, or preserved in a volume exists independently, allowing new containers to attach to it and inherit the state. This is fundamental for stateful applications like databases, where ensuring data preserved across container restarts, updates, and accidental deletions is not optional. The other method, a bind mount (diagram right), shares a direct directory from the host and is often used for development but is less manageable than Docker volumes.
 
-![alt text](/images/persitency.png)
+![alt text](images/persitency.png)
 
 
 ## How the Docker engine works?
@@ -139,7 +139,7 @@ Adminer is a lightweight yet comprehensive web-based tool for managing databases
 
 Go to: https://mzolotar.42.fr/adminer/
 
-![alt text](/images/bonus_3_services.png)
+![alt text](images/bonus_3_services.png)
 
 
 ###  ✨ ftp server
@@ -148,7 +148,7 @@ An FTP server, or File Transfer Protocol server, is a technology used to transfe
 📕 [oficial doc vsftpd](http://vsftpd.beasts.org/vsftpd_conf.html/)
 📕 [vsftpd.conf(5) - Linux man page](https://linux.die.net/man/5/vsftpd.conf)
 
-![alt text](/images/bonus_ftp.png)
+![alt text](images/bonus_ftp.png)
 
 
 ###  ✨ Catvisor
@@ -158,4 +158,4 @@ To make the monitoring real, Catvisor must talk to the Docker daemon through the
 
 📕 [oficial doc Catvisor](https://github.com/google/cadvisor)
 
-![alt text](/images/bonus_catvisor.png)
+![alt text](images/bonus_catvisor.png)
